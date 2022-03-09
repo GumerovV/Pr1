@@ -15,17 +15,26 @@ def main(x, esp):
         print("Error: Возникло переполнение!")
         return 0
     q=zn*math.pow(x,i)/math.factorial(i)
+ return sum
 
- print("Сумма ряда с заданной точностью равна: ",sum)
+def CHECK():
+    check = True
+    while check:
+        try:
+            x = float(input())
+            check = False
+            if x > 1 or x < 0:
+                print("Error: Введены некорректные данные!")
+                check = True
+        except ValueError:
+            print("Error: Введены некорректные данные!")
+    return x
 
 def interface():
  check=True
  while(check):
-  try:
-      check= int(input("Для нахождения суммы ряда с заданной точностью нажмите (1), для завершения программы нажмите (0)"))
-  except ValueError:
-      print("Error: Введены некорректные данные!")
-      check = False
+  print("Для нахождения суммы ряда с заданной точностью нажмите (1), для завершения программы нажмите (0)")
+  check= CHECK()
   if check>1 or check<0:
       check = False
       print("Error: Введены некорректные данные!")
@@ -39,28 +48,22 @@ def interface():
             print("Error: Введены некорректные данные!")
             inp= False
             break
-          if esp<0:
-              print("Заданныая точность должна быть положительной!")
-              continue
           if inp: break
-      if inp: main(x, esp)
+      print("Сумма ряда с заданной точностью равна: ", main(x, esp))
   if check and inp:
-   try:
-        flag=int(input("Если хотите изменить точность нажмите (1) или (0), чтобы продолжить"))
-   except ValueError:
-        print("Error: Введены некорректные данные!")
-        break
-   if flag > 1 or flag < 0:
-       print("Error: Введены некорректные данные!")
-       break
+   print("Если хотите изменить точность нажмите (1) или (0), чтобы продолжить")
+   flag = CHECK()
    while flag:
-      esp = float(input("Введите заданную точность: "))
-      if esp < 0:
-          print("Заданныая точность должна быть положительной!")
+      try:
+          esp = float(input("Введите заданную точность: "))
+          if esp<0:
+             print("Error: Заданная точность должна быть положительной!")
+             continue
+      except ValueError:
+          print("Error: Введены некорректные данные!")
           continue
-      main(x, esp)
-      flag=int(input("Если хотите изменить точность нажмите (1) или (0), чтобы продолжить"))
+      print("Сумма ряда с заданной точностью равна: ", main(x, esp))
+      print("Если хотите изменить точность нажмите (1) или (0), чтобы продолжить")
+      flag = CHECK()
 
 interface()
-
-
