@@ -46,8 +46,7 @@ def interface():
             esp = float(input("Введите заданную точность: "))
           except ValueError:
             print("Error: Введены некорректные данные!")
-            inp= False
-            break
+            continue
           if inp: break
       print("Сумма ряда с заданной точностью равна: ", main(x, esp))
   if check and inp:
